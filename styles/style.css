@@ -112,8 +112,6 @@ select {
   }
 }
 
-
-
 /* Styles begin */
 
 /* HEADER STYLES */
@@ -154,7 +152,7 @@ nav ul {
     display: flex;
     flex-flow: row wrap;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
     list-style: none;
     width: inherit;
 }
@@ -165,6 +163,7 @@ a {
     font-size: 1.15rem;
 }
 
+/* Landing section */
 
 main {
     display: flex;
@@ -182,7 +181,7 @@ main {
     background-image: url("../images/landing.jpg");
     background-size: cover;
     background-repeat: no-repeat;
-    /* background-attachment: fixed; */
+    background-attachment: fixed;
     background-position: center;
 
 }
@@ -213,6 +212,7 @@ main {
     background: none;
     border: none;
     cursor: pointer;
+
 }
 
 /* Info Section */
@@ -352,15 +352,26 @@ article:nth-last-of-type(3) {
 @media screen and (max-width: 760px) {
 
     nav ul {
-        display: none;
+        visibility: hidden;
         flex-direction: column;
+        /* Position absolute to position it correctly */
         position: absolute;
         background-color: whitesmoke;
         width: 100px;
+        height: 500px;
+        border-bottom-left-radius: 10px;
         margin: 0;
         padding: 0.5rem 0;
         top: 82px;
         right: 0px;
+        pointer-events: none;
+        opacity: 0;
+        /* Transform causes the smooth transition.
+        Transition all will cause everthing to transition so it
+        s better to define the right properties so u can predict the behavior and
+        know which property is transitioning */
+        transform: translateX(100px);
+        transition: transform 1s;
     }
 
     .hamburger {
@@ -368,7 +379,11 @@ article:nth-last-of-type(3) {
     }
 
     nav ul.show {
-        display: flex;
+        visibility: visible;
+        transform: translateX(0px);
+        pointer-events: all;
+        opacity: 1;
+        transition: transform 1s;
     }
 
 
